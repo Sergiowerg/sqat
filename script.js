@@ -8,8 +8,8 @@ const ejercicios = {
   sentadilla: {
     nombre: "Sentadilla",
     descripcion: "Ejercicio fundamental para trabajar piernas y glúteos. Mantén la espalda recta y baja hasta que tus muslos estén paralelos al suelo.",
-    imagen: "squat.jpg",
-    video: "squat-demo.mp4"
+    imagen: "img/squat.jpg",
+    video: "videos/squat-demo.mp4"
   },
   // Puedes añadir más ejercicios aquí
 };
@@ -124,6 +124,7 @@ stopCameraBtn.addEventListener('click', () => {
   stopCameraBtn.style.display = 'none';
   startCameraBtn.style.display = 'flex';
   pantallaCamara.style.display = 'none';
+  pantallaDetalle.style.display = 'none'; // <-- OCULTA EL DETALLE
   mostrarResultados();
   infoPanel.style.display = 'block';
   cancelAnimationFrame(rafId);
@@ -211,6 +212,22 @@ function mostrarResultados() {
   if (enMovimiento && ultimoMovimiento) {
     tiempoEjercicioMs += performance.now() - ultimoMovimiento;
     enMovimiento = false;
+  }
+
+  // Si no hay repeticiones, muestra mensaje
+  if (reps === 0) {
+    document.getElementById('reps').textContent = '0';
+    document.getElementById('completas').textContent = '0';
+    document.getElementById('incompletas').textContent = '0';
+    document.getElementById('calidad').textContent = '-';
+    document.getElementById('velocidad').textContent = '-';
+    document.getElementById('fatiga').textContent = '-';
+    document.getElementById('profundidad').textContent = '-';
+    document.getElementById('rango').textContent = '-';
+    document.getElementById('esfuerzo').textContent = '-';
+    document.getElementById('tiempo').textContent = '-';
+    infoPanel.style.display = 'block';
+    return;
   }
 
   const mediaVel = velocidades.reduce((a, b) => a + b, 0) / velocidades.length || 0;
