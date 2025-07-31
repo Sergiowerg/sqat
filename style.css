@@ -204,10 +204,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   box-shadow: 0 4px 24px rgba(140,82,255,0.10);
   font-size: 1.12em;
   display: none;
-  width: 90vw;
-  box-sizing: border-box;
 }
-
 #info p {
   margin: 14px 0;
   display: flex;
@@ -215,18 +212,12 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   align-items: center;
   border-bottom: 1px dashed #ece6ff;
   padding-bottom: 6px;
-  font-size: 1em;
-  flex-wrap: wrap;
-  word-break: break-word;
 }
-
 #info p:last-child { border-bottom: none; }
 #info strong {
   color: #8c52ff;
-  min-width: 120px;
+  min-width: 160px;
   font-weight: 600;
-  font-size: 1em;
-  text-align: left;
 }
 #info span {
   font-weight: bold;
@@ -237,45 +228,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   min-width: 40px;
   display: inline-block;
   text-align: right;
-  font-size: 1em;
 }
-
-/* Mejoras para móvil */
-@media (max-width: 500px) {
-  #info {
-    max-width: 98vw;
-    width: 98vw;
-    padding: 16px 4vw;
-    font-size: 1em;
-    border-radius: 10px;
-    margin-top: 18px;
-  }
-  #info p {
-    font-size: 0.98em;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-    padding-bottom: 4px;
-  }
-  #info strong {
-    min-width: 0;
-    font-size: 1em;
-    margin-bottom: 2px;
-  }
-  #info span {
-    font-size: 1em;
-    min-width: 0;
-    width: auto;
-    margin-left: 0;
-  }
-  #volverInicioBtn {
-    width: 100%;
-    max-width: 100%;
-    font-size: 1.1em;
-    margin-top: 18px;
-  }
-}
-
 /* Formulario en pantalla-detalle */
 #userForm {
   display: flex;
