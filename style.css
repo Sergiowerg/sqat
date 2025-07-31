@@ -17,11 +17,9 @@ body {
   -ms-overflow-style: none;  /* IE y Edge */
   scrollbar-width: none;     /* Firefox */
 }
-
 body::-webkit-scrollbar, html::-webkit-scrollbar {
   display: none; /* Chrome, Safari y Opera */
 }
-
 #pantalla-carga {
   position: fixed;
   top: 0; left: 0;
@@ -87,14 +85,14 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 .ejercicio p { margin: 0; font-size: 1em; color: #444;}
 
 #pantalla-detalle {
+  position: relative;
   background: #18122b;
   min-height: 100vh;
-  padding-bottom: 40px;
-  padding-top: 0;
-  overflow: hidden;
-  max-width: 100vw;
-  max-height: 100vh;
+  padding: 0;
   box-sizing: border-box;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 #videoDemo {
@@ -103,100 +101,37 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   height: 33vh;
   object-fit: cover;
   display: block;
-  margin: 0 auto 0 auto;
+  margin: 0;
   background: #222;
   border-radius: 0;
   border: none;
 }
 
-#descripcionEjercicio {
-  color: #fff;
-  font-size: 1.1em;
-  text-align: center;
-  margin: 18px 0 24px 0;
-  padding: 0 18px;
-}
-
-.form-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-
-.form-box {
-  background: #222;
-  border-radius: 12px;
-  padding: 12px 8px;
-  box-shadow: 0 2px 8px rgba(140,82,255,0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 90px;
-  flex: 1 1 0;
-}
-
-.form-box label {
-  color: #fff;
-  font-size: 1em;
-  text-align: center;
-  margin-bottom: 0;
-}
-
-.form-box input[type="number"] {
-  margin-top: 6px;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #8c52ff;
-  font-size: 1em;
-  background: #fff;
-  color: #222;
-  width: 80px;
-  text-align: center;
-}
-#userForm {
-  background: #222;
-  color: #fff;
-  border-radius: 16px;
-  padding: 28px 18px;
-  max-width: 350px;
-  margin: 0 auto 24px auto;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-#userForm label {
-  display: flex;
-  flex-direction: column;
-  font-size: 1.1em;
-  margin-bottom: 8px;
-}
-#userForm input[type="number"] {
-  margin-top: 6px;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #8c52ff;
-  font-size: 1em;
-  background: #fff;
-  color: #222;
-  width: 80px;
-  text-align: center;
-}
-#userForm button {
-  margin-top: 18px;
-  background: #8c52ff;
-  color: #fff;
-  font-size: 1.1em;
-  border-radius: 8px;
-  padding: 12px 0;
+.volver-x {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 10;
+  background: transparent;
   border: none;
+  color: #fff;
+  font-size: 2.2em;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
 }
-#userForm button:active { background: #6c38e6; }
+.volver-x:hover { color: #8c52ff; }
+
+#nombreEjercicio {
+  color: #fff;
+  text-align: center;
+  margin: 18px 0 0 0;
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
 
 #pantalla-camara {
   position: relative;
@@ -269,7 +204,10 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   box-shadow: 0 4px 24px rgba(140,82,255,0.10);
   font-size: 1.12em;
   display: none;
+  width: 90vw;
+  box-sizing: border-box;
 }
+
 #info p {
   margin: 14px 0;
   display: flex;
@@ -277,12 +215,18 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   align-items: center;
   border-bottom: 1px dashed #ece6ff;
   padding-bottom: 6px;
+  font-size: 1em;
+  flex-wrap: wrap;
+  word-break: break-word;
 }
+
 #info p:last-child { border-bottom: none; }
 #info strong {
   color: #8c52ff;
-  min-width: 160px;
+  min-width: 120px;
   font-weight: 600;
+  font-size: 1em;
+  text-align: left;
 }
 #info span {
   font-weight: bold;
@@ -293,13 +237,115 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   min-width: 40px;
   display: inline-block;
   text-align: right;
+  font-size: 1em;
 }
+
+/* Mejoras para móvil */
+@media (max-width: 500px) {
+  #info {
+    max-width: 98vw;
+    width: 98vw;
+    padding: 16px 4vw;
+    font-size: 1em;
+    border-radius: 10px;
+    margin-top: 18px;
+  }
+  #info p {
+    font-size: 0.98em;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding-bottom: 4px;
+  }
+  #info strong {
+    min-width: 0;
+    font-size: 1em;
+    margin-bottom: 2px;
+  }
+  #info span {
+    font-size: 1em;
+    min-width: 0;
+    width: auto;
+    margin-left: 0;
+  }
+  #volverInicioBtn {
+    width: 100%;
+    max-width: 100%;
+    font-size: 1.1em;
+    margin-top: 18px;
+  }
+}
+
+/* Formulario en pantalla-detalle */
+#userForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100vw;
+  box-sizing: border-box;
+  margin: 24px auto 0 auto;
+  background: transparent;
+  box-shadow: none;
+  padding: 0 8px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.form-box {
+  background: #222;
+  border-radius: 12px;
+  padding: 12px 8px;
+  box-shadow: 0 2px 8px rgba(140,82,255,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+  flex: 1 1 0;
+  max-width: 120px;
+  box-sizing: border-box;
+  text-align: center; /* Centra el texto dentro de la caja */
+}
+
+.form-box label {
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.form-box input[type="number"] {
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #8c52ff;
+  font-size: 1em;
+  background: #fff;
+  color: #222;
+  width: 80px;
+  max-width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Botón de grabar más pequeño y centrado */
 .big-btn {
-  width: 85vw;
-  max-width: 350px;
-  margin: 0 auto;
-  font-size: 2.2em;
-  padding: 1em;
+  width: 60vw;
+  max-width: 200px;
+  font-size: 1.2em;
+  padding: 0.7em;
   border-radius: 1em;
   background: #fff;
   color: #8c52ff;
@@ -307,7 +353,20 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   font-weight: bold;
   box-shadow: 0 4px 24px rgba(0,0,0,0.15);
   cursor: pointer;
-  margin-bottom: 24px;
+  margin: 0 auto 24px auto;
+  display: block;
   transition: background 0.2s, color 0.2s;
 }
-.big-btn:active { background: #8c52ff; color: #fff; }
+
+/* Responsive: apila los campos en móvil */
+@media (max-width: 500px) {
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .form-box {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
