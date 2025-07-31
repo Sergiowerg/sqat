@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analizador de Sentadillas con IA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="pantalla-ejercicio">
+    <button id="btnSquat" class="big-btn">Sentadilla</button>
+    <!-- Puedes añadir más ejercicios aquí -->
+  </div>
+
+  <form id="userForm" style="display:none; margin-bottom:24px;">
+    <label>Peso corporal (kg): <input type="number" id="pesoCorporal" min="30" max="300" step="0.1" required></label>
+    <label>Altura (cm): <input type="number" id="alturaCorporal" min="100" max="250" step="0.1" required></label>
+    <label>Peso extra (kg): <input type="number" id="pesoExtra" min="0" max="300" step="0.1" value="0"></label>
+    <button type="submit">Continuar</button>
+  </form>
+
+  <div id="pantalla-camara" style="display:none;">
+    <button id="startCameraBtn">Grabar sentadilla</button>
+    <button id="stopCameraBtn" style="display:none;">Finalizar</button>
+    <video id="video" autoplay playsinline muted></video>
+  </div>
+
+  <div id="info" style="display:none;">
+    <p><strong>Repeticiones:</strong> <span id="reps">0</span></p>
+    <p><strong>Repeticiones completas:</strong> <span id="completas">0</span></p>
+    <p><strong>Repeticiones incompletas:</strong> <span id="incompletas">0</span></p>
+    <p><strong>Calidad técnica:</strong> <span id="calidad">-</span></p>
+    <p><strong>Velocidad media (subida):</strong> <span id="velocidad">0</span> px/frame</p>
+    <p><strong>Fatiga estimada:</strong> <span id="fatiga">-</span></p>
+    <p><strong>Profundidad media:</strong> <span id="profundidad">-</span> px</p>
+    <p><strong>Rango de movimiento:</strong> <span id="rango">-</span> px</p>
+    <p><strong>Esfuerzo total:</strong> <span id="esfuerzo">0</span></p>
+    <p><strong>Tiempo total:</strong> <span id="tiempo">-</span></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.14.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+  <script src="script.js"></script>
+</body>
+</html>
