@@ -8,8 +8,8 @@ const ejercicios = {
   sentadilla: {
     nombre: "Sentadilla",
     descripcion: "Ejercicio fundamental para trabajar piernas y glúteos. Mantén la espalda recta y baja hasta que tus muslos estén paralelos al suelo.",
-    imagen: "img/squat.jpg",
-    video: "videos/squat-demo.mp4"
+    imagen: "squat.jpg",
+    video: "squat-demo.mp4"
   },
   // Puedes añadir más ejercicios aquí
 };
