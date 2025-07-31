@@ -3,39 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Analizador de Sentadillas con IA</title>
+  <title>Analizador de Ejercicios con IA</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="pantalla-ejercicio">
-    <button id="btnSquat" class="big-btn">Sentadilla</button>
+  <!-- Pantalla de carga -->
+  <div id="pantalla-carga" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+    <div class="loader"></div>
+    <p style="color:#fff;margin-top:20px;">Cargando...</p>
+  </div>
+
+  <!-- Pantalla de selección de ejercicios -->
+  <div id="pantalla-ejercicios">
+    <h1>Ejercicios</h1>
+    <div class="ejercicio" data-ejercicio="sentadilla">
+      <img src="img/squat.jpg" alt="Sentadilla">
+      <div>
+        <h2>Sentadilla</h2>
+        <p>Ejercicio fundamental para trabajar piernas y glúteos. Mantén la espalda recta y baja hasta que tus muslos estén paralelos al suelo.</p>
+      </div>
+    </div>
     <!-- Puedes añadir más ejercicios aquí -->
+    <!--
+    <div class="ejercicio" data-ejercicio="flexion">
+      <img src="img/pushup.jpg" alt="Flexión">
+      <div>
+        <h2>Flexión</h2>
+        <p>Ejercicio para pectorales, hombros y tríceps. Mantén el cuerpo recto y baja el pecho hasta casi tocar el suelo.</p>
+      </div>
+    </div>
+    -->
   </div>
 
-  <form id="userForm" style="display:none; margin-bottom:24px;">
-    <label>Peso corporal (kg): <input type="number" id="pesoCorporal" min="30" max="300" step="0.1" required></label>
-    <label>Altura (cm): <input type="number" id="alturaCorporal" min="100" max="250" step="0.1" required></label>
-    <label>Peso extra (kg): <input type="number" id="pesoExtra" min="0" max="300" step="0.1" value="0"></label>
-    <button type="submit">Continuar</button>
-  </form>
-
-  <div id="pantalla-camara" style="display:none;">
-    <button id="startCameraBtn">Grabar sentadilla</button>
-    <button id="stopCameraBtn" style="display:none;">Finalizar</button>
-    <video id="video" autoplay playsinline muted></video>
+  <!-- Pantalla de detalle de ejercicio -->
+  <div id="pantalla-detalle" style="display:none;">
+    <button id="volverBtn" class="volver-btn">← Volver</button>
+    <h2 id="nombreEjercicio"></h2>
+    <video id="videoDemo" controls autoplay muted playsinline></video>
+    <div id="descripcionEjercicio"></div>
+    <form id="userForm">
+      <div class="form-row">
+        <div class="form-box">
+          <label>Peso cp (kg)
+            <input type="number" id="pesoCorporal" min="30" max="300" step="0.1" required>
+          </label>
+        </div>
+        <div class="form-box">
+          <label>Altura (cm)
+            <input type="number" id="alturaCorporal" min="100" max="250" step="0.1" required>
+          </label>
+        </div>
+        <div class="form-box">
+          <label>Peso ex (kg)
+            <input type="number" id="pesoExtra" min="0" max="300" step="0.1" value="0">
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="big-btn" style="margin-top:18px;">Grabar</button>
+    </form>
+    <div id="pantalla-camara" style="display:none;">
+      <button id="startCameraBtn" class="circle-btn"></button>
+      <button id="stopCameraBtn" class="circle-btn" style="display:none;background:#e74c3c;"></button>
+      <button id="switchCameraBtn" style="display:inline-block;">🔄</button>
+      <video id="video" autoplay playsinline muted></video>
+    </div>
   </div>
 
+  <!-- Resultados -->
   <div id="info" style="display:none;">
+    <h2>Resultados</h2>
     <p><strong>Repeticiones:</strong> <span id="reps">0</span></p>
     <p><strong>Repeticiones completas:</strong> <span id="completas">0</span></p>
     <p><strong>Repeticiones incompletas:</strong> <span id="incompletas">0</span></p>
     <p><strong>Calidad técnica:</strong> <span id="calidad">-</span></p>
-    <p><strong>Velocidad media (subida):</strong> <span id="velocidad">0</span> px/frame</p>
+    <p><strong>Velocidad media (subida):</strong> <span id="velocidad">0</span></p>
     <p><strong>Fatiga estimada:</strong> <span id="fatiga">-</span></p>
-    <p><strong>Profundidad media:</strong> <span id="profundidad">-</span> px</p>
-    <p><strong>Rango de movimiento:</strong> <span id="rango">-</span> px</p>
+    <p><strong>Profundidad media:</strong> <span id="profundidad">-</span></p>
+    <p><strong>Rango de movimiento:</strong> <span id="rango">-</span></p>
     <p><strong>Esfuerzo total:</strong> <span id="esfuerzo">0</span></p>
     <p><strong>Tiempo total:</strong> <span id="tiempo">-</span></p>
+    <button id="volverInicioBtn" class="big-btn" style="margin-top:24px;">Volver al inicio</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.14.0/dist/tf.min.js"></script>
