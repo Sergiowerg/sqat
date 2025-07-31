@@ -1,0 +1,89 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+h1, form, input[type="file"] {
+  display: none;
+}
+
+video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  background: #000;
+  z-index: 1;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+button {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+  border: none;
+  font-size: 2em;
+  font-weight: bold;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  cursor: pointer;
+  outline: none;
+  touch-action: manipulation;
+}
+
+button:active {
+  background: #e0e0e0;
+  transform: translateX(-50%) scale(0.95);
+}
+
+button:disabled {
+  background: #888;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+#info {
+  display: none;
+}
+
+.big-btn {
+  width: 90vw;
+  max-width: 400px;
+  margin: 30vh auto 0 auto;
+  display: block;
+  font-size: 2em;
+  padding: 1em;
+  border-radius: 1em;
+  background: #fff;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
